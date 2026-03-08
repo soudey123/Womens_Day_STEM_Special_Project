@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>She Shaped Science | Tribute to Women in STEM</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-deep: #0a0a1a;
+            --gold: #FFD700;
+            --rose: #FF6B9D;
+            --teal: #4ECDC4;
+            --blue: #45B7D1;
+            --sage: #96CEB4;
+            --purple: #9B59B6;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Starfield Background */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-style: italic;
+            color: var(--rose);
+            max-width: 800px;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .stats-ticker {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--gold);
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Filter Bar */
+        .filter-section {
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold);
+            color: var(--bg-deep);
+            border-color: var(--gold);
+        }
+
+        .search-box {
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            color: white;
+            width: 250px;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 0.2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .toggle-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 18px;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: var(--rose);
+            color: white;
+        }
+
+        /* Timeline View */
+        .timeline-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--rose), var(--teal));
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            z-index: 2;
+            box-shadow: 0 0 15px var(--gold);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        .timeline-card {
+            width: 45%;
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+
+        .timeline-card h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .era-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .field-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .explore-btn {
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--rose);
+            background: transparent;
+            color: var(--rose);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .explore-btn:hover {
+            background: var(--rose);
+            color: white;
+        }
+
+        /* Grid View */
+        .grid-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            display: none;
+        }
+
+        .grid-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--gold), var(--rose));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--bg-deep);
+        }
+
+        .grid-reveal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: 0.4s;
+            transform: translateY(100%);
+        }
+
+        .grid-card:hover .grid-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--bg-deep);
+            width: 100%;
+            max-width: 1100px;
+            height: 90vh;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+            animation: scaleIn 0.4s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-left {
+            padding: 3rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .modal-right {
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            overflow-y: auto;
+        }
+
+        .wiki-img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .milestone-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .milestone-item {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .milestone-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .milestone-year {
+            font-weight: bold;
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+
+        /* Stats & Legend */
+        .impact-section {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item h4 {
+            font-size: 3rem;
+            color: var(--gold);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Quote Carousel */
+        .quotes-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .quote-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: 1s ease-in-out;
+        }
+
+        .quote-item.active {
+            opacity: 1;
+        }
+
+        .quote-text {
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .quote-author {
+            font-weight: bold;
+            color: var(--rose);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .timeline-container::before { left: 20px; }
+            .timeline-item { justify-content: flex-end !important; }
+            .timeline-card { width: calc(100% - 50px); }
+            .timeline-dot { left: 20px; }
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-left { border-right: none; border-bottom: 1px solid var(--glass-border); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="starfield"></div>
+
+    <header class="hero">
+        <h1>She Shaped Science</h1>
+        <p>Celebrating Women Who Changed the World of STEM</p>
+        <div class="stats-ticker">
+            20+ Pioneers | 6 Disciplines | 1 Century of Breakthroughs
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="filter-group" id="fieldFilters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="Science">Science</button>
+                <button class="filter-btn" data-filter="Technology">Technology</button>
+                <button class="filter-btn" data-filter="Engineering">Engineering</button>
+                <button class="filter-btn" data-filter="Mathematics">Mathematics</button>
+                <button class="filter-btn" data-filter="Medicine">Medicine</button>
+            </div>
+            <div class="filter-group" id="decadeFilters">
+                <button class="filter-btn active" data-decade="all">All Eras</button>
+                <button class="filter-btn" data-decade="1900">1900s</button>
+                <button class="filter-btn" data-decade="1920">1920s</button>
+                <button class="filter-btn" data-decade="1940">1940s</button>
+                <button class="filter-btn" data-decade="1960">1960s</button>
+                <button class="filter-btn" data-decade="1980">1980s</button>
+                <button class="filter-btn" data-decade="2000">2000s+</button>
+            </div>
+            <input type="text" class="search-box" placeholder="Search by name..." id="searchInput">
+            <div class="view-toggle">
+                <button class="toggle-btn active" id="timelineViewBtn">Timeline</button>
+                <button class="toggle-btn" id="gridViewBtn">Grid</button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="timeline-container" id="timelineView">
+            <!-- Timeline items injected here -->
+        </div>
+
+        <div class="grid-container" id="gridView">
+            <!-- Grid items injected here -->
+        </div>
+    </main>
+
+    <section class="impact-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4 id="stat-nobel">5</h4>
+                <p>Nobel Prize Winners</p>
+            </div>
+            <div class="stat-item">
+                <h4 id="stat-fields">6</h4>
+                <p>Fields Represented</p>
+            </div>
+            <div class="stat-item">
+                <h4 id="stat-decades">12</h4>
+                <p>Decades Covered</p>
+            </div>
+            <div class="stat-item">
+                <h4>Billions</h4>
+                <p>Lives Changed</p>
+            </div>
+        </div>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#4ECDC4"></div> Science</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#45B7D1"></div> Technology</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#96CEB4"></div> Engineering</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FFD700"></div> Mathematics</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FF6B9D"></div> Medicine</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#9B59B6"></div> Astronomy</div>
+        </div>
+    </section>
+
+    <section class="quotes-section">
+        <div class="quote-container" id="quoteCarousel">
+            <!-- Quotes injected here -->
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <div class="modal-left" id="modalLeft">
+                <!-- Journey content -->
+            </div>
+            <div class="modal-right" id="modalRight">
+                <!-- Wiki content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const womenData = [
+            {
+                id: 1, name: "Marie Curie", field: "Science", born: 1867, died: 1934, breakthroughYear: 1903, wikipedia_key: "Marie_Curie", color: "#4ECDC4",
+                milestones: [
+                    { year: 1891, event: "Moved to Paris to study at the Sorbonne." },
+                    { year: 1898, event: "Discovered Polonium and Radium with Pierre Curie." },
+                    { year: 1903, event: "First woman to win a Nobel Prize (Physics)." },
+                    { year: 1911, event: "Won second Nobel Prize (Chemistry)." },
+                    { year: 1914, event: "Developed mobile X-ray units for WWI." }
+                ],
+                barriers: ["First woman to win a Nobel Prize", "First person to win two Nobel Prizes", "First female professor at University of Paris"],
+                whyMatters: "Her pioneering research on radioactivity laid the foundation for modern physics and oncology. She remains the only person to win Nobel Prizes in two different scientific fields.",
+                quote: "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less."
+            },
+            {
+                id: 2, name: "Hedy Lamarr", field: "Technology", born: 1914, died: 2000, breakthroughYear: 1942, wikipedia_key: "Hedy_Lamarr", color: "#45B7D1",
+                milestones: [
+                    { year: 1933, event: "Starred in the controversial film Ecstasy." },
+                    { year: 1937, event: "Escaped to Paris and then London to pursue acting." },
+                    { year: 1942, event: "Patented frequency-hopping spread spectrum technology." },
+                    { year: 1962, event: "Her technology was first used by the US Navy." },
+                    { year: 1997, event: "Received the EFF Pioneer Award." }
+                ],
+                barriers: ["Overcame Hollywood typecasting to be recognized as an inventor", "Self-taught engineer without formal training"],
+                whyMatters: "While famous as a film star, her invention of frequency-hopping spread spectrum technology is the direct ancestor of modern Wi-Fi, Bluetooth, and GPS.",
+                quote: "Analysis gave me great freedom of expression and control of my own life."
+            },
+            {
+                id: 3, name: "Katherine Johnson", field: "Mathematics", born: 1918, died: 2020, breakthroughYear: 1961, wikipedia_key: "Katherine_Johnson", color: "#FFD700",
+                milestones: [
+                    { year: 1953, event: "Began working at NACA (later NASA) as a 'human computer'." },
+                    { year: 1961, event: "Calculated the trajectory for Alan Shepard's first space flight." },
+                    { year: 1962, event: "Verified John Glenn's orbital equations by hand." },
+                    { year: 1969, event: "Calculated the trajectory for the Apollo 11 Moon landing." },
+                    { year: 2015, event: "Awarded the Presidential Medal of Freedom." }
+                ],
+                barriers: ["Broke racial and gender barriers at NASA", "One of the first African-American women to work as a NASA scientist"],
+                whyMatters: "Her precise calculations were critical to the success of the first U.S. manned spaceflights. She proved that human intellect was the ultimate fail-safe for early computing.",
+                quote: "I counted everything. I counted the steps to the road, the steps up to church, the number of dishes and silverware I washed... anything that could be counted, I did."
+            },
+            {
+                id: 4, name: "Rosalind Franklin", field: "Science", born: 1920, died: 1958, breakthroughYear: 1952, wikipedia_key: "Rosalind_Franklin", color: "#4ECDC4",
+                milestones: [
+                    { year: 1945, event: "Earned her PhD from Cambridge University." },
+                    { year: 1951, event: "Began research on DNA at King's College London." },
+                    { year: 1952, event: "Produced 'Photo 51', the clearest X-ray image of DNA." },
+                    { year: 1953, event: "Her data was used by Watson and Crick without her knowledge." },
+                    { year: 1958, event: "Died of ovarian cancer at age 37." }
+                ],
+                barriers: ["Denied proper credit for DNA discovery during her lifetime", "Faced significant sexism in the academic world of the 1950s"],
+                whyMatters: "Her X-ray diffraction images were the key to discovering the double-helix structure of DNA. Her work also advanced our understanding of viruses and coal.",
+                quote: "Science and everyday life cannot and should not be separated."
+            },
+            {
+                id: 5, name: "Grace Hopper", field: "Technology", born: 1906, died: 1992, breakthroughYear: 1952, wikipedia_key: "Grace_Hopper", color: "#45B7D1",
+                milestones: [
+                    { year: 1943, event: "Joined the U.S. Naval Reserve during WWII." },
+                    { year: 1944, event: "Worked on the Harvard Mark I computer." },
+                    { year: 1952, event: "Created the first compiler (A-0) for a computer." },
+                    { year: 1959, event: "Led the committee that created COBOL." },
+                    { year: 1985, event: "Promoted to Rear Admiral." }
+                ],
+                barriers: ["One of the first women to achieve the rank of Rear Admiral", "Pioneered the idea that computer code could be written in English"],
+                whyMatters: "She revolutionized computing by creating the first compiler, making programming accessible. COBOL, the language she helped create, is still used in business systems today.",
+                quote: "The most dangerous phrase in the language is, 'We've always done it this way.'"
+            },
+            {
+                id: 6, name: "Dorothy Hodgkin", field: "Science", born: 1910, died: 1994, breakthroughYear: 1964, wikipedia_key: "Dorothy_Hodgkin", color: "#4ECDC4",
+                milestones: [
+                    { year: 1937, event: "Earned her PhD from Cambridge." },
+                    { year: 1945, event: "Determined the structure of Penicillin." },
+                    { year: 1956, event: "Determined the structure of Vitamin B12." },
+                    { year: 1964, event: "Won the Nobel Prize in Chemistry." },
+                    { year: 1969, event: "Determined the structure of Insulin after 35 years of work." }
+                ],
+                barriers: ["Only British woman to win a Nobel Prize in science", "Conducted world-class research while suffering from severe rheumatoid arthritis"],
+                whyMatters: "She pioneered X-ray crystallography to determine the structures of vital biochemical substances, enabling the mass production of life-saving drugs like penicillin.",
+                quote: "I was captured for life by chemistry and by crystals."
+            },
+            {
+                id: 7, name: "Barbara McClintock", field: "Science", born: 1902, died: 1992, breakthroughYear: 1948, wikipedia_key: "Barbara_McClintock", color: "#4ECDC4",
+                milestones: [
+                    { year: 1927, event: "Earned PhD from Cornell University." },
+                    { year: 1944, event: "Elected to the National Academy of Sciences." },
+                    { year: 1948, event: "Discovered 'jumping genes' (transposons) in maize." },
+                    { year: 1953, event: "Her work was initially met with skepticism and ignored." },
+                    { year: 1983, event: "Won the Nobel Prize in Physiology or Medicine." }
+                ],
+                barriers: ["First woman to win an unshared Nobel Prize in Medicine", "Persisted for decades when her revolutionary ideas were rejected"],
+                whyMatters: "She discovered that genes can move within and between chromosomes. This discovery of genetic transposition changed our understanding of how genomes function and evolve.",
+                quote: "If you know you are on the right track, if you have this inner knowledge, then nobody can turn you off... no matter what they say."
+            },
+            {
+                id: 8, name: "Chien-Shiung Wu", field: "Science", born: 1912, died: 1997, breakthroughYear: 1956, wikipedia_key: "Chien-Shiung_Wu", color: "#4ECDC4",
+                milestones: [
+                    { year: 1936, event: "Moved to the US to study at UC Berkeley." },
+                    { year: 1944, event: "Joined the Manhattan Project at Columbia University." },
+                    { year: 1956, event: "Conducted the Wu Experiment, disproving the law of parity." },
+                    { year: 1973, event: "First woman to lead the American Physical Society." },
+                    { year: 1975, event: "Received the National Medal of Science." }
+                ],
+                barriers: ["Known as the 'First Lady of Physics'", "Overlooked for the Nobel Prize while her male colleagues received it"],
+                whyMatters: "Her experiment disproved a fundamental law of nature (conservation of parity), fundamentally changing particle physics. She was also a key contributor to the Manhattan Project.",
+                quote: "There is only one world, the world of ideas."
+            },
+            {
+                id: 9, name: "Lise Meitner", field: "Science", born: 1878, died: 1968, breakthroughYear: 1938, wikipedia_key: "Lise_Meitner", color: "#4ECDC4",
+                milestones: [
+                    { year: 1905, event: "Second woman to earn a PhD in physics from Vienna." },
+                    { year: 1917, event: "Discovered the element protactinium." },
+                    { year: 1938, event: "Discovered nuclear fission with Otto Hahn." },
+                    { year: 1945, event: "Hahn won the Nobel Prize; Meitner was excluded." },
+                    { year: 1966, event: "Awarded the Enrico Fermi Award." }
+                ],
+                barriers: ["Fled Nazi Germany as a Jewish scientist", "Denied the Nobel Prize despite being the primary theorist of nuclear fission"],
+                whyMatters: "She provided the first theoretical explanation of nuclear fission. Her work led to the development of nuclear energy and atomic weapons, though she refused to work on the bomb.",
+                quote: "Science makes people reach selfishly for truth and objectivity; it teaches people to accept reality, with wonder and admiration."
+            },
+            {
+                id: 10, name: "Ada Lovelace", field: "Technology", born: 1815, died: 1852, breakthroughYear: 1843, wikipedia_key: "Ada_Lovelace", color: "#45B7D1",
+                milestones: [
+                    { year: 1833, event: "Met Charles Babbage and saw his Difference Engine." },
+                    { year: 1843, event: "Published notes on the Analytical Engine, including Note G." },
+                    { year: 1843, event: "Described the first algorithm intended for a machine." },
+                    { year: 1980, event: "The Department of Defense named the language 'Ada' after her." },
+                    { year: 2009, event: "Ada Lovelace Day established to celebrate women in STEM." }
+                ],
+                barriers: ["First computer programmer in history", "Envisioned computers as more than just calculators a century before they existed"],
+                whyMatters: "She is widely considered the world's first computer programmer. She realized that Babbage's machine could manipulate symbols and not just numbers, foreseeing the digital age.",
+                quote: "That brain of mine is something more than merely mortal; as time will show."
+            },
+            {
+                id: 11, name: "Vera Rubin", field: "Science", born: 1928, died: 2016, breakthroughYear: 1970, wikipedia_key: "Vera_Rubin", color: "#9B59B6",
+                milestones: [
+                    { year: 1954, event: "Earned PhD from Georgetown University." },
+                    { year: 1965, event: "First woman allowed to use the Palomar Observatory." },
+                    { year: 1970, event: "Discovered galaxy rotation curves that didn't match expectations." },
+                    { year: 1980, event: "Her work provided the first robust evidence for Dark Matter." },
+                    { year: 1993, event: "Received the National Medal of Science." }
+                ],
+                barriers: ["Faced exclusion from observatories due to her gender", "Her evidence for dark matter was initially dismissed by the male establishment"],
+                whyMatters: "Her observations of galaxy rotation proved that the universe is filled with invisible 'Dark Matter'. This discovery fundamentally changed our understanding of cosmology.",
+                quote: "Don't shoot for the stars, we are already among them."
+            },
+            {
+                id: 12, name: "Tu Youyou", field: "Medicine", born: 1930, died: null, breakthroughYear: 1972, wikipedia_key: "Tu_Youyou", color: "#FF6B9D",
+                milestones: [
+                    { year: 1955, event: "Graduated from Beijing Medical College." },
+                    { year: 1967, event: "Appointed head of Project 523 to find a malaria cure." },
+                    { year: 1972, event: "Successfully extracted Artemisinin from sweet wormwood." },
+                    { year: 1972, event: "Volunteered to be the first human test subject for the drug." },
+                    { year: 2015, event: "Won the Nobel Prize in Physiology or Medicine." }
+                ],
+                barriers: ["First Chinese woman to win a Nobel Prize in science", "Conducted research during the Cultural Revolution with limited resources"],
+                whyMatters: "She discovered Artemisinin, a drug that has saved millions of lives from malaria. Her approach combined ancient Chinese herbal medicine with modern scientific methods.",
+                quote: "Every scientist dreams of doing something that can help the world."
+            },
+            {
+                id: 13, name: "Mae C. Jemison", field: "Engineering", born: 1956, died: null, breakthroughYear: 1992, wikipedia_key: "Mae_C._Jemison", color: "#96CEB4",
+                milestones: [
+                    { year: 1981, event: "Earned her Medical Degree from Cornell." },
+                    { year: 1983, event: "Joined the Peace Corps as a medical officer in Africa." },
+                    { year: 1987, event: "Accepted into NASA's astronaut program." },
+                    { year: 1992, event: "Flew into space on the Shuttle Endeavour (STS-47)." },
+                    { year: 1993, event: "Founded the Jemison Group to research technology in daily life." }
+                ],
+                barriers: ["First African-American woman in space", "Accomplished doctor, engineer, and dancer"],
+                whyMatters: "Her journey to space inspired a generation of minority students to pursue STEM. She continues to lead the 100 Year Starship project to enable human travel beyond our solar system.",
+                quote: "Never be limited by other people's limited imaginations."
+            },
+            {
+                id: 14, name: "Jennifer Doudna", field: "Science", born: 1964, died: null, breakthroughYear: 2012, wikipedia_key: "Jennifer_Doudna", color: "#4ECDC4",
+                milestones: [
+                    { year: 1989, event: "Earned PhD from Harvard Medical School." },
+                    { year: 2002, event: "Became a professor at UC Berkeley." },
+                    { year: 2012, event: "Co-discovered CRISPR-Cas9 gene editing technology." },
+                    { year: 2015, event: "Named one of Time's 100 most influential people." },
+                    { year: 2020, event: "Won the Nobel Prize in Chemistry." }
+                ],
+                barriers: ["Pioneered one of the most significant discoveries in the history of biology", "Leading the ethical conversation around gene editing"],
+                whyMatters: "She co-invented CRISPR-Cas9, a tool that allows scientists to edit DNA with unprecedented precision. This technology has the potential to cure genetic diseases and transform agriculture.",
+                quote: "The power to control our species' genetic future is awesome and terrifying. Deciding how to handle it may be the biggest challenge we have ever faced."
+            },
+            {
+                id: 15, name: "Françoise Barré-Sinoussi", field: "Medicine", born: 1947, died: null, breakthroughYear: 1983, wikipedia_key: "Françoise_Barré-Sinoussi", color: "#FF6B9D",
+                milestones: [
+                    { year: 1975, event: "Earned her PhD from the Pasteur Institute." },
+                    { year: 1983, event: "Identified the retrovirus later known as HIV." },
+                    { year: 1988, event: "Became head of her own laboratory at the Pasteur Institute." },
+                    { year: 2008, event: "Won the Nobel Prize in Physiology or Medicine." },
+                    { year: 2012, event: "Elected President of the International AIDS Society." }
+                ],
+                barriers: ["Identified the cause of a global pandemic during a time of great fear", "Advocated for AIDS patients in developing countries"],
+                whyMatters: "Her discovery of HIV allowed for the development of diagnostic tests and antiretroviral drugs, turning a death sentence into a manageable chronic condition for millions.",
+                quote: "To be a scientist, you have to be very curious, but you also have to be very persistent."
+            },
+            {
+                id: 16, name: "Maryam Mirzakhani", field: "Mathematics", born: 1977, died: 2017, breakthroughYear: 2014, wikipedia_key: "Maryam_Mirzakhani", color: "#FFD700",
+                milestones: [
+                    { year: 1994, event: "First Iranian student to win a gold medal at the Math Olympiad." },
+                    { year: 2004, event: "Earned PhD from Harvard University." },
+                    { year: 2008, event: "Became a professor at Stanford University." },
+                    { year: 2014, event: "First woman to win the Fields Medal." },
+                    { year: 2017, event: "Died of breast cancer at age 40." }
+                ],
+                barriers: ["First woman and first Iranian to win the Fields Medal (the 'Nobel of Math')", "Broke the gender barrier in the highest level of mathematics"],
+                whyMatters: "Her work on the dynamics and geometry of complex surfaces opened new frontiers in mathematics and theoretical physics. She is a symbol of excellence for women in math worldwide.",
+                quote: "The more I spent time on mathematics, the more excited I got."
+            },
+            {
+                id: 17, name: "Gladys West", field: "Mathematics", born: 1930, died: null, breakthroughYear: 1978, wikipedia_key: "Gladys_West", color: "#FFD700",
+                milestones: [
+                    { year: 1956, event: "Began working at the Naval Proving Ground as a mathematician." },
+                    { year: 1960, event: "Participated in an award-winning study on Pluto's motion." },
+                    { year: 1978, event: "Project manager for Seasat, the first satellite for ocean sensing." },
+                    { year: 1986, event: "Published the data processing system for GPS." },
+                    { year: 2018, event: "Inducted into the Air Force Space and Missile Pioneers Hall of Fame." }
+                ],
+                barriers: ["One of the 'Hidden Figures' whose work was uncredited for decades", "Overcame Jim Crow era obstacles to become a leader in satellite geodesy"],
+                whyMatters: "Her mathematical modeling of the Earth's shape (the geoid) provided the foundational calculations for Global Positioning System (GPS) technology used by billions today.",
+                quote: "I was always doing things right, and they would know I was doing them right."
+            },
+            {
+                id: 18, name: "Radia Perlman", field: "Technology", born: 1951, died: null, breakthroughYear: 1985, wikipedia_key: "Radia_Perlman", color: "#45B7D1",
+                milestones: [
+                    { year: 1976, event: "Earned Master's in Mathematics from MIT." },
+                    { year: 1985, event: "Invented the Spanning Tree Protocol (STP)." },
+                    { year: 1988, event: "Earned PhD in Computer Science from MIT." },
+                    { year: 1992, event: "Published the textbook 'Interconnections'." },
+                    { year: 2014, event: "Inducted into the Internet Hall of Fame." }
+                ],
+                barriers: ["Known as the 'Mother of the Internet' (though she dislikes the title)", "One of only a few women in the early days of network engineering"],
+                whyMatters: "She invented the Spanning Tree Protocol, which is fundamental to the operation of network bridges and the modern internet. Her work ensures that data packets don't get stuck in infinite loops.",
+                quote: "The world would be a much better place if people were less afraid of being wrong."
+            },
+            {
+                id: 19, name: "Cecilia Payne-Gaposchkin", field: "Science", born: 1900, died: 1979, breakthroughYear: 1925, wikipedia_key: "Cecilia_Payne-Gaposchkin", color: "#9B59B6",
+                milestones: [
+                    { year: 1923, event: "Left England for the US because women couldn't get degrees at Cambridge." },
+                    { year: 1925, event: "First person to earn a PhD in Astronomy from Radcliffe (Harvard)." },
+                    { year: 1925, event: "Discovered that stars are made mainly of Hydrogen and Helium." },
+                    { year: 1956, event: "First woman to be promoted to full professor at Harvard." },
+                    { year: 1976, event: "Awarded the Henry Norris Russell Lectureship." }
+                ],
+                barriers: ["Her revolutionary thesis was initially rejected by the leading male astronomer of the time", "Fought for equal pay and recognition at Harvard for decades"],
+                whyMatters: "She discovered the chemical composition of the stars. Her PhD thesis was described as 'undoubtedly the most brilliant PhD thesis ever written in astronomy'.",
+                quote: "The reward of the young scientist is the emotional thrill of being the first person in the history of the world to see something or to understand something."
+            },
+            {
+                id: 20, name: "Alice Ball", field: "Medicine", born: 1892, died: 1916, breakthroughYear: 1915, wikipedia_key: "Alice_Ball", color: "#FF6B9D",
+                milestones: [
+                    { year: 1915, event: "First woman and first African American to earn a Master's from Hawaii." },
+                    { year: 1915, event: "Developed the 'Ball Method' for treating leprosy." },
+                    { year: 1916, event: "Died at age 24 after a laboratory accident." },
+                    { year: 1922, event: "Her method was used to treat 78 patients, allowing them to return home." },
+                    { year: 2000, event: "The University of Hawaii finally recognized her work with a plaque." }
+                ],
+                barriers: ["Work was stolen by a male colleague after her death", "Broke racial and gender barriers in the early 20th century"],
+                whyMatters: "She developed the most effective treatment for leprosy until the 1940s. Her 'Ball Method' allowed patients to be treated at home rather than being exiled to colonies.",
+                quote: "I will not stop until I have found a way."
+            }
+        ];
+
+        const quotes = womenData.map(w => ({ text: w.quote, author: w.name }));
+
+        // Starfield Generation
+        function initStars() {
+            const starfield = document.getElementById('starfield');
+            const count = 200;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+                starfield.appendChild(star);
+            }
+        }
+
+        // Render Functions
+        function renderTimeline(data) {
+            const container = document.getElementById('timelineView');
+            container.innerHTML = '';
+            data.sort((a, b) => a.breakthroughYear - b.breakthroughYear).forEach((woman, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.innerHTML = `
+                    <div class="timeline-dot" style="background: ${woman.color}; box-shadow: 0 0 15px ${woman.color}"></div>
+                    <div class="timeline-card">
+                        <span class="era-badge">${woman.born}–${woman.died || 'Present'}</span>
+                        <span class="field-badge" style="color: ${woman.color}">${woman.field}</span>
+                        <h3>${woman.name}</h3>
+                        <p>Breakthrough: ${woman.breakthroughYear}</p>
+                        <button class="explore-btn" onclick="openModal(${woman.id})">Explore Journey</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            observeTimeline();
+        }
+
+        function renderGrid(data) {
+            const container = document.getElementById('gridView');
+            container.innerHTML = '';
+            data.forEach(woman => {
+                const initials = woman.name.split(' ').map(n => n[0]).join('');
+                const card = document.createElement('div');
+                card.className = 'grid-card';
+                card.innerHTML = `
+                    <div class="avatar">${initials}</div>
+                    <h3>${woman.name}</h3>
+                    <p style="color: ${woman.color}; font-weight: bold">${woman.field}</p>
+                    <p class="serif" style="margin-top: 0.5rem">${woman.born}–${woman.died || 'Present'}</p>
+                    <div class="grid-reveal">
+                        <p>${woman.whyMatters.substring(0, 100)}...</p>
+                        <button class="explore-btn" onclick="openModal(${woman.id})" style="border-color: white; color: white">View Details</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderQuotes() {
+            const container = document.getElementById('quoteCarousel');
+            quotes.forEach((q, i) => {
+                const item = document.createElement('div');
+                item.className = `quote-item ${i === 0 ? 'active' : ''}`;
+                item.innerHTML = `
+                    <p class="quote-text">"${q.text}"</p>
+                    <p class="quote-author">— ${q.author}</p>
+                `;
+                container.appendChild(item);
+            });
+
+            let current = 0;
+            setInterval(() => {
+                const items = document.querySelectorAll('.quote-item');
+                items[current].classList.remove('active');
+                current = (current + 1) % items.length;
+                items[current].classList.add('active');
+            }, 5000);
+        }
+
+        // Modal Logic
+        async function openModal(id) {
+            const woman = womenData.find(w => w.id === id);
+            const modal = document.getElementById('detailModal');
+            const left = document.getElementById('modalLeft');
+            const right = document.getElementById('modalRight');
+
+            left.innerHTML = `
+                <h2 style="font-size: 3.5rem; color: var(--gold); margin-bottom: 0.5rem">${woman.name}</h2>
+                <div style="margin-bottom: 2rem">
+                    <span class="field-badge" style="background: ${woman.color}; color: #000; margin-left: 0">${woman.field}</span>
+                    <span class="era-badge" style="margin-left: 1rem">${woman.born}–${woman.died || 'Present'}</span>
+                </div>
+                
+                <h3 style="color: var(--rose); font-size: 1.8rem; margin-bottom: 1rem">Life Journey</h3>
+                <ul class="milestone-list">
+                    ${woman.milestones.map(m => `
+                        <li class="milestone-item">
+                            <span class="milestone-year">${m.year}</span> ${m.event}
+                        </li>
+                    `).join('')}
+                </ul>
+
+                <h3 style="color: var(--rose); font-size: 1.8rem; margin: 2rem 0 1rem">Why She Matters</h3>
+                <p>${woman.whyMatters}</p>
+
+                <h3 style="color: var(--rose); font-size: 1.8rem; margin: 2rem 0 1rem">Barriers Broken</h3>
+                <ul style="list-style: none">
+                    ${woman.barriers.map(b => `<li style="margin-bottom: 0.5rem">✨ ${b}</li>`).join('')}
+                </ul>
+            `;
+
+            right.innerHTML = `
+                <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1.5rem">From Wikipedia</h3>
+                <div class="spinner"></div>
+            `;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            try {
+                const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${woman.wikipedia_key}`);
+                const data = await response.json();
+                
+                right.innerHTML = `
+                    <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1.5rem">From Wikipedia</h3>
+                    ${data.thumbnail ? `<img src="${data.thumbnail.source}" class="wiki-img" alt="${woman.name}">` : ''}
+                    <p style="font-size: 1.1rem; line-height: 1.8">${data.extract}</p>
+                    <a href="${data.content_urls.desktop.page}" target="_blank" style="display: inline-block; margin-top: 2rem; color: var(--gold); text-decoration: none; font-weight: bold">Read Full Article →</a>
+                `;
+            } catch (error) {
+                right.innerHTML = `<p>Failed to load Wikipedia summary. Please check your connection.</p>`;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Intersection Observer for Timeline
+        function observeTimeline() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+        // Filtering Logic
+        function applyFilters() {
+            const field = document.querySelector('#fieldFilters .active').dataset.filter;
+            const decade = document.querySelector('#decadeFilters .active').dataset.decade;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = womenData.filter(w => {
+                const matchesField = field === 'all' || w.field === field;
+                const matchesDecade = decade === 'all' || (w.breakthroughYear >= parseInt(decade) && w.breakthroughYear < parseInt(decade) + 20);
+                const matchesSearch = w.name.toLowerCase().includes(search) || w.field.toLowerCase().includes(search);
+                return matchesField && matchesDecade && matchesSearch;
+            });
+
+            renderTimeline(filtered);
+            renderGrid(filtered);
+        }
+
+        // Event Listeners
+        document.getElementById('closeModal').onclick = closeModal;
+        window.onclick = (e) => { if (e.target === document.getElementById('detailModal')) closeModal(); };
+
+        document.querySelectorAll('#fieldFilters .filter-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelector('#fieldFilters .active').classList.remove('active');
+                btn.classList.add('active');
+                applyFilters();
+            };
+        });
+
+        document.querySelectorAll('#decadeFilters .filter-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelector('#decadeFilters .active').classList.remove('active');
+                btn.classList.add('active');
+                applyFilters();
+            };
+        });
+
+        document.getElementById('searchInput').oninput = applyFilters;
+
+        document.getElementById('timelineViewBtn').onclick = () => {
+            document.getElementById('timelineViewBtn').classList.add('active');
+            document.getElementById('gridViewBtn').classList.remove('active');
+            document.getElementById('timelineView').style.display = 'block';
+            document.getElementById('gridView').style.display = 'none';
+        };
+
+        document.getElementById('gridViewBtn').onclick = () => {
+            document.getElementById('gridViewBtn').classList.add('active');
+            document.getElementById('timelineViewBtn').classList.remove('active');
+            document.getElementById('timelineView').style.display = 'none';
+            document.getElementById('gridView').style.display = 'grid';
+        };
+
+        // Init
+        window.onload = () => {
+            initStars();
+            renderTimeline(womenData);
+            renderGrid(womenData);
+            renderQuotes();
+        };
+    </script>
+</body>
+</html>
