@@ -1,0 +1,149 @@
+You are an expert full-stack web developer. Build a complete, single-file HTML/CSS/JS
+web application called "She Shaped Science" — an interactive, visually stunning tribute
+to remarkable women in STEM fields from 1900 to the present day.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+APP OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The app showcases the journey and contributions of at least 20 pioneering women across
+STEM disciplines (Science, Technology, Engineering, Mathematics, Medicine) since 1900.
+It fetches live Wikipedia summaries via the Wikipedia REST API and renders a rich
+interactive experience.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEATURED WOMEN (include all of these)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Include these women with their Wikipedia article titles for API calls:
+Marie Curie (1867–1934) — Physics/Chemistry | "Marie_Curie"
+Hedy Lamarr (1914–2000) — Technology/Wireless | "Hedy_Lamarr"
+Katherine Johnson (1918–2020) — Mathematics/NASA | "Katherine_Johnson"
+Rosalind Franklin (1920–1958) — Biology/DNA | "Rosalind_Franklin"
+Grace Hopper (1906–1992) — Computing | "Grace_Hopper"
+Dorothy Hodgkin (1910–1994) — Chemistry | "Dorothy_Hodgkin"
+Barbara McClintock (1902–1992) — Genetics | "Barbara_McClintock"
+Chien-Shiung Wu (1912–1997) — Physics | "Chien-Shiung_Wu"
+Lise Meitner (1878–1968) — Nuclear Physics | "Lise_Meitner"
+Ada Lovelace (1815–1852) — Computing pioneer | "Ada_Lovelace"
+Vera Rubin (1928–2016) — Astronomy | "Vera_Rubin"
+Tu Youyou (1930–) — Medicine | "Tu_Youyou"
+Mae C. Jemison (1956–) — Aerospace | "Mae_C._Jemison"
+Jennifer Doudna (1964–) — Biochemistry/CRISPR | "Jennifer_Doudna"
+Françoise Barré-Sinoussi (1947–) — Virology/HIV | "Françoise_Barré-Sinoussi"
+Maryam Mirzakhani (1977–2017) — Mathematics | "Maryam_Mirzakhani"
+Gladys West (1930–) — Mathematics/GPS | "Gladys_West"
+Radia Perlman (1951–) — Networking | "Radia_Perlman"
+Cecilia Payne-Gaposchkin (1900–1979) — Astronomy | "Cecilia_Payne-Gaposchkin"
+Alice Ball (1892–1916) — Chemistry/Medicine | "Alice_Ball"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CORE FEATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HERO SECTION
+Full-width animated header: "She Shaped Science"
+Subtitle: "Celebrating Women Who Changed the World of STEM"
+Particle or starfield CSS animation in the background
+Stats ticker showing: "20+ Pioneers | 6 Disciplines | 1 Century of Breakthroughs"
+FILTER BAR
+Filter buttons: All | Science | Technology | Engineering | Mathematics | Medicine
+Decade filter: 1900s | 1920s | 1940s | 1960s | 1980s | 2000s+
+Search box that live-filters by name or field
+VERTICAL TIMELINE VIEW
+A vertical, alternating left-right timeline spanning 1900–present
+Each woman is a card node on the timeline with:
+• Color-coded dot by STEM field
+• Birth–death years
+• Field/discipline badge
+• Breakthrough year marker
+• "Explore" button → opens Detail Modal
+Smooth scroll-triggered animation as cards enter viewport (use IntersectionObserver)
+GRID / GALLERY VIEW
+Toggle between Timeline and Grid view
+Grid: 3-column responsive cards with hover reveal effect showing key achievement
+Each card has: photo placeholder with initials avatar, name, field, era
+DETAIL MODAL (most important feature)
+When user clicks "Explore" on any woman:
+Full-screen overlay modal with two-column layout
+LEFT COLUMN — Journey Panel:
+• Large styled name header
+• Field badge + era
+• "Life Journey" section: chronological milestones (hardcoded per person)
+Birth & early education
+Key discovery/invention year
+Major awards/recognition
+Legacy statement
+• "Why She Matters" — 2–3 sentence impact statement
+• "Barriers Broken" — bullet list of firsts (e.g., "First woman to win Nobel Prize in Physics")
+RIGHT COLUMN — Wikipedia Live Panel:
+• Section header: "From Wikipedia"
+• On modal open: fetch https://en.wikipedia.org/api/rest_v1/page/summary/{wikipedia_key}
+• Display: thumbnail image (if available from API), extract (summary text), and a
+"Read Full Article →" link to Wikipedia
+• Show a loading spinner while fetching
+• Handle errors gracefully with a fallback message
+Close button (X) and click-outside-to-close behavior
+Smooth open/close animation
+FIELD LEGEND + IMPACT STATS SECTION
+Horizontal section showing stats:
+• Nobel Prize Winners: 5
+• Fields Represented: 6
+• Decades Covered: 12
+• Lives Changed: Billions
+Color-coded legend for each STEM field
+QUOTE CAROUSEL
+Auto-rotating carousel of real quotes from the featured women
+Include at least 8 quotes with attribution
+Smooth crossfade transition every 5 seconds
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DESIGN REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Visual Style:
+Theme: Dark cosmic background (#0a0a1a deep navy) with gold (#FFD700) and
+rose (#FF6B9D) accent colors — evoking discovery, brilliance, and strength
+Typography: Use Google Fonts — "Cormorant Garamond" for headings (elegant, historic),
+"DM Sans" for body text
+Timeline line: vertical gradient from gold to rose
+Cards: glassmorphism effect (backdrop-filter: blur, semi-transparent background)
+Field colors:
+Science = #4ECDC4 (teal)
+Technology = #45B7D1 (blue)
+Engineering = #96CEB4 (sage)
+Mathematics = #FFD700 (gold)
+Medicine = #FF6B9D (rose)
+Astronomy = #9B59B6 (purple)
+Animations:
+Hero: Subtle starfield parallax using CSS animation
+Cards: Fade-up on scroll using IntersectionObserver
+Modal: Scale-in from center (transform + opacity transition)
+Timeline dots: Pulse glow animation
+Quote carousel: Crossfade
+Responsive Design:
+Mobile-first. Timeline collapses to single-column on mobile
+Grid becomes 1-column on mobile, 2-column on tablet, 3 on desktop
+Modal is full-screen on mobile
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TECHNICAL REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Single HTML file with embedded CSS and JS (no build tools)
+Load Google Fonts via @import
+Wikipedia API call: GET https://en.wikipedia.org/api/rest_v1/page/summary/{title}
+Response fields to use: extract (text), thumbnail.source (image URL), content_urls.desktop.page (link)
+No external JS frameworks — vanilla JS only
+Use CSS Grid and Flexbox for layout
+All data for the 20 women should be hardcoded as a JavaScript array of objects with:
+{ id, name, field, born, died, breakthroughYear, wikipedia_key, milestones[], barriers[],
+whyMatters, quote, color }
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATA TO HARDCODE FOR EACH WOMAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+For each woman, include:
+milestones: array of { year, event } objects (4–6 milestones each)
+barriers: array of strings listing "firsts" or obstacles overcome
+whyMatters: 2–3 sentence impact paragraph
+quote: one famous quote attributed to her
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OUTPUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Produce the complete, working, single HTML file. The file must:
+✓ Open in any browser without a server (except Wikipedia API calls need internet)
+✓ Be fully functional with all 20 women's data populated
+✓ Have live Wikipedia fetching working in the modal
+✓ Be visually polished and production-quality
+✓ Include all sections described above
+Begin generating the full HTML file now.
